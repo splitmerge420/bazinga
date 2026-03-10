@@ -5,3 +5,4 @@ pub mod trustguard;
 pub mod agentic_pause;
 pub mod janus_evaluator;
 pub mod willow_interface;
+pub mod kintsuji_apl;

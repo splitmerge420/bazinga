@@ -5,13 +5,13 @@ mod commands;
 
 #[derive(Parser)]
 #[command(name = "bazinga")]
-#[command(about = "Constitutional universal compute layer — BAZINGA v0.2")]
+#[command(about = "Constitutional universal compute layer — BAZINGA v0.2\nKintsuji-first: all commands pass the golden repair gate before execution.")]
 struct Cli {
     #[command(subcommand)]
     command: Commands,
 }
 
-#[derive(Subcommand)]
+#[derive(Subcommand, Debug)]
 enum Commands {
     /// Sync artifacts from Notion
     SyncNotion,
@@ -31,6 +31,20 @@ enum Commands {
 #[tokio::main]
 async fn main() {
     let cli = Cli::parse();
+
+    // KINTSUJI GATE — mandatory first gate, all commands
+    // Dave's golden repair protocol: https://github.com/splitmerge420/Kintsuji-code-fixer-
+    let command_str = format!("{:?}", cli.command);
+    match engines::kintsuji_apl::KintsujiAPL::gate(&command_str).await {
+        Ok(report) => {
+            println!("   Kintsuji stamp: {} @ {}\n", report.provenance_hash, report.timestamp);
+        }
+        Err(e) => {
+            eprintln!("KINTSUJI BLOCKED: {}", e);
+            eprintln!("Command halted. Fix the violation before running.");
+            std::process::exit(1);
+        }
+    }
 
     engines::constitutional_engine::boot().await;
 
