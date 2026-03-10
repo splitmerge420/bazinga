@@ -6,3 +6,7 @@ pub mod agentic_pause;
 pub mod janus_evaluator;
 pub mod willow_interface;
 pub mod kintsuji_apl;
+pub mod zero_erasure;
+pub mod visitor_manifest;
+pub mod sovereign_shredder;
+pub mod citizen_redress;

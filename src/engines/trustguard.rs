@@ -1,11 +1,12 @@
 // TrustGuard — BAZINGA v0.2
 // Bitmask firewall. Principle #9.
-// 4 violation tiers: Anomaly → Breach → Abuse → Attack
-// STUB: validate_command always passes — bitmask logic marked TODO
+// 4 violation tiers: Anomaly -> Breach -> Abuse -> Attack
+// STUB: validate_command always passes -- bitmask logic marked TODO
 
 use crate::engines::constitutional_engine::PRINCIPLES;
+use serde::{Deserialize, Serialize};
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
 pub enum ViolationTier {
     Anomaly,   // Tier 0: behavior diverges from declared intent
     Breach,    // Tier 1: constitutional principle violated
