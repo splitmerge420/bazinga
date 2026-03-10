@@ -1,7 +1,68 @@
 {
-  "canonical_multiplier": 13628,
+  "timestamp": "2026-03-10T11:22:05.662910125+00:00",
+  "canonical_total": 13628.16,
+  "layers": [
+    {
+      "name": "Universal Search",
+      "multiplier": 8.0,
+      "source": "Internal — universal_context.rs",
+      "running_total": 8.0
+    },
+    {
+      "name": "Edge RAG",
+      "multiplier": 2.0,
+      "source": "Internal — zero_erasure.rs (TODO)",
+      "running_total": 16.0
+    },
+    {
+      "name": "Zero Erasure",
+      "multiplier": 1.5,
+      "source": "Internal — Sheldonbrain substrate",
+      "running_total": 24.0
+    },
+    {
+      "name": "Agentic Pause",
+      "multiplier": 1.4,
+      "source": "arXiv 2408.16096 (Isik et al., 2024)",
+      "running_total": 33.599999999999994
+    },
+    {
+      "name": "Constitutional Filter",
+      "multiplier": 1.3,
+      "source": "Internal — constitutional_engine.rs",
+      "running_total": 43.67999999999999
+    },
+    {
+      "name": "Neuromorphic Runtime",
+      "multiplier": 10.0,
+      "source": "arXiv 2408.16096 — 30-100x GPU/CPU",
+      "running_total": 436.79999999999995
+    },
+    {
+      "name": "Circadian Coding",
+      "multiplier": 3.0,
+      "source": "Internal — 8/8/8 window structure",
+      "running_total": 1310.3999999999999
+    },
+    {
+      "name": "Synaptic Weight Gating",
+      "multiplier": 1.3,
+      "source": "Internal — trustguard.rs bitmask",
+      "running_total": 1703.52
+    },
+    {
+      "name": "Willow Voice",
+      "multiplier": 4.0,
+      "source": "Internal — willow_interface.rs",
+      "running_total": 6814.08
+    },
+    {
+      "name": "Janus Evaluator",
+      "multiplier": 2.0,
+      "source": "Internal — janus_evaluator.rs",
+      "running_total": 13628.16
+    }
+  ],
   "colossus_mode": false,
-  "timestamp": "2026-03-10T11:17:09Z",
-  "citation": "arXiv 2408.16096",
-  "status": "verified"
+  "zetta_ops": null
 }

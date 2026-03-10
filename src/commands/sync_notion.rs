@@ -1,6 +1,9 @@
-/// Sync Notion — pulls all Sheldonbrain OS artifacts to local index
-/// TODO: Wire to Notion MCP / REST API with Zero Erasure append-only log
+// Sync Notion — BAZINGA v0.2
+// Pulls all vaulted artifacts from Sheldonbrain OS (Notion substrate)
+// TODO: Wire Notion MCP + API credentials
+
 pub async fn run() {
-    println!("[SyncNotion] STUB: pulling from Sheldonbrain OS vault.");
-    println!("[SyncNotion] TODO: implement Notion API client with Zero Erasure append.");
+    println!("Sync Notion: pulling artifacts from Sheldonbrain OS...");
+    println!("  [STUB: Notion MCP integration required]");
+    println!("  Vault target: 25+ artifacts across BAZINGA sprint");
 }

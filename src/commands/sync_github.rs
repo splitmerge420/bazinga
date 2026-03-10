@@ -1,6 +1,9 @@
-/// Sync GitHub — pulls state from splitmerge420 corpus
-/// TODO: Wire to GitHub API to index all BAZINGA-adjacent repos
+// Sync GitHub — BAZINGA v0.2
+// Syncs BAZINGA repo state and checks for aluminum-swarm-index forks
+// TODO: Wire GitHub API
+
 pub async fn run() {
-    println!("[SyncGithub] STUB: syncing splitmerge420 corpus state.");
-    println!("[SyncGithub] TODO: implement GitHub API client + aluminum-swarm-index integration.");
+    println!("Sync GitHub: syncing splitmerge420/bazinga...");
+    println!("  [STUB: GitHub API not yet wired]");
+    println!("  Watching for aluminum-swarm-index activation");
 }

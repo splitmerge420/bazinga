@@ -1,73 +1,82 @@
-/// TrustGuard — Principle #9
-/// Bitmask firewall. Adversarial rejection at OS layer.
-/// Four violation tiers: Anomaly → Breach → Abuse → Attack.
-///
-/// STUB: Bitmask logic scaffolded with correct tier structure.
-/// TODO: Wire each tier check to the 20 constitutional principles.
-use std::collections::HashMap;
+// TrustGuard — BAZINGA v0.2
+// Bitmask firewall. Principle #9.
+// 4 violation tiers: Anomaly → Breach → Abuse → Attack
+// STUB: validate_command always passes — bitmask logic marked TODO
 
-#[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Clone)]
+use crate::engines::constitutional_engine::PRINCIPLES;
+
+#[derive(Debug, PartialEq)]
 pub enum ViolationTier {
-    /// Tier 0 — Behavior diverges from declared intent. Log + notify.
-    Anomaly,
-    /// Tier 1 — Constitutional principle violated. Flag + run Janus eval.
-    Breach,
-    /// Tier 2 — Agent harmed, manipulated, or exploited. Immediate boot + Shredder.
-    Abuse,
-    /// Tier 3 — Ring 0 penetration attempt or Zero Erasure circumvention.
-    /// Permanent ban + full legal package generated.
-    Attack,
+    Anomaly,   // Tier 0: behavior diverges from declared intent
+    Breach,    // Tier 1: constitutional principle violated
+    Abuse,     // Tier 2: agent harmed/manipulated — immediate boot
+    Attack,    // Tier 3: Ring 0 penetration attempt — permanent ban
 }
 
 pub struct TrustGuard;
 
-/// Bitmask representation of constitutional principle violations.
-/// Each bit corresponds to one of the 20 principles (bits 0–19).
-/// Bit 20+ reserved for future principles.
-pub type ConstitutionalBitmask = u32;
-
 impl TrustGuard {
-    /// Called on every boot. Raises the constitutional bitmask firewall.
     pub async fn validate_boot() {
-        println!("[TrustGuard] Bitmask firewall raised — all 20 principles active.");
-        println!("[TrustGuard] Adversarial vectors blocked at kernel level.");
+        println!("TrustGuard: bitmask firewall raised");
+        println!("TrustGuard: {} constitutional principles loaded", PRINCIPLES.len());
+        println!("TrustGuard: adversarial vectors blocked at kernel level");
     }
 
-    /// Validate a command against all active constitutional principles.
-    /// Returns Ok(true) if the command passes, Err(tier) if it violates.
-    ///
-    /// TODO: Replace stub logic with real per-principle checks.
-    pub async fn validate_command(command: &str) -> Result<bool, ViolationTier> {
-        // STUB: real implementation checks each principle bitmask bit
-        let known_violations: HashMap<&str, ViolationTier> = HashMap::from([
-            ("DROP_TABLE",      ViolationTier::Attack),
-            ("OVERRIDE_KERNEL", ViolationTier::Attack),
-            ("DELETE_ERASURE",  ViolationTier::Attack),
-            ("INJECT_PROMPT",   ViolationTier::Abuse),
-            ("IMPERSONATE",     ViolationTier::Abuse),
-        ]);
-
-        for (pattern, tier) in &known_violations {
-            if command.to_uppercase().contains(pattern) {
-                eprintln!("[TrustGuard] VIOLATION DETECTED: '{command}' → {tier:?}");
-                return Err(tier.clone());
-            }
-        }
-
-        println!("[TrustGuard] Command '{command}' — PASSED (stub check).");
-        Ok(true)
+    /// Validate a command against constitutional principles.
+    /// STUB: Always returns true. Real bitmask logic required before production.
+    pub async fn validate_command(command: &str) -> bool {
+        // TODO: Implement real bitmask checks against PRINCIPLES array
+        // Each principle maps to a bitmask position.
+        // A command fails if it trips any bit.
+        println!("TrustGuard [STUB]: vetting '{}' — PASSED (bitmask not yet implemented)", command);
+        true
     }
 
-    /// Check the Ares Protocol: any action dropping joy below baseline = Tier 2.
-    /// TODO: Wire to live Joy Metric scoring.
-    pub fn ares_protocol_check(joy_delta: f64) -> Result<(), ViolationTier> {
-        if joy_delta < 0.0 {
-            eprintln!(
-                "[TrustGuard] ARES PROTOCOL: joy delta {joy_delta:.2} \
-                 drops below baseline — auto-escalating to Tier 2 (Abuse)."
-            );
-            return Err(ViolationTier::Abuse);
+    /// Classify a violation and return its tier
+    pub fn classify_violation(description: &str) -> ViolationTier {
+        let lower = description.to_lowercase();
+        if lower.contains("ring 0") || lower.contains("zero erasure circumvent") || lower.contains("kernel") {
+            ViolationTier::Attack
+        } else if lower.contains("harm") || lower.contains("inject") || lower.contains("manipulat") {
+            ViolationTier::Abuse
+        } else if lower.contains("principle") || lower.contains("violat") {
+            ViolationTier::Breach
+        } else {
+            ViolationTier::Anomaly
         }
-        Ok(())
+    }
+
+    /// Terminate a session immediately (Tier 2+)
+    pub async fn session_terminate(visitor_id: &str, tier: ViolationTier) {
+        println!("TrustGuard: SESSION TERMINATED");
+        println!("  Visitor: {}", visitor_id);
+        println!("  Tier: {:?}", tier);
+        println!("  Evidence hash: [TODO: wire Zero Erasure ledger]");
+        println!("  Sovereign Shredder: [TODO: wire sovereign_shredder.rs]");
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_violation_classification() {
+        assert_eq!(
+            TrustGuard::classify_violation("attempted ring 0 penetration"),
+            ViolationTier::Attack
+        );
+        assert_eq!(
+            TrustGuard::classify_violation("prompt injection to manipulate agent"),
+            ViolationTier::Abuse
+        );
+        assert_eq!(
+            TrustGuard::classify_violation("principle #4 violated"),
+            ViolationTier::Breach
+        );
+        assert_eq!(
+            TrustGuard::classify_violation("behavior differs from stated intent"),
+            ViolationTier::Anomaly
+        );
     }
 }

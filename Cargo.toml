@@ -2,10 +2,8 @@
 name = "bazinga"
 version = "0.2.0"
 edition = "2021"
-description = "BAZINGA — Constitutional universal compute layer"
+description = "Constitutional universal compute layer — BAZINGA v0.2"
 license = "MIT OR Apache-2.0"
-repository = "https://github.com/splitmerge420/bazinga"
-authors = ["Dave (Captain Planet Data)", "Claude (Constitutional Scribe)"]
 
 [dependencies]
 clap = { version = "4.5", features = ["derive"] }
@@ -13,7 +11,6 @@ tokio = { version = "1", features = ["full"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 chrono = "0.4"
-ed25519-dalek = "2.1"   # v2.1 API: SigningKey, not Keypair
-rand = "0.8"             # required by ed25519-dalek keygen
-sha2 = "0.10"            # hashing for artifact provenance
-hex = "0.4"              # hex encoding for signatures
+ed25519-dalek = { version = "2.1", features = ["rand_core"] }
+rand = "0.8"
+sha2 = "0.10"
